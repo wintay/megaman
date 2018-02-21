@@ -2,7 +2,28 @@ import numpy as np
 from PIL import ImageGrab
 import cv2
 import time
-from directkeys import ReleaseKey, PressKey, W, A, S, D, X, Z
+from directkeys import ReleaseKey, PressKey, W, A, S, D, X, Z, C, left, up, right, down
+from getkeys import key_check
+import os
+
+def keys_to_output(keys):
+	#[Z,X,C,left,up,right,down]
+	output = [0,0,0]
+	if 'Z' in keys:
+		output[0] = 1
+	elif 'X' in keys:
+		output[1] = 1
+	elif 'C' in keys:
+		output[2] = 1
+	elif 'left' in keys:
+		output[3] = 1
+	elif 'up' in keys:
+		output[4] = 1
+	elif 'right' in keys:
+		output[5] = 1
+	elif 'down' in keys:
+		output[6] = 1
+	return output		
 
 def process_img(original_image):
     
@@ -19,7 +40,7 @@ for i in list(range(4))[::-1]:
 
 last_time = time.time()
 while(True):
-    # 800x600 windowed mode for GTA 5, at the top left position of your main screen.
+    # 800x600
     # 40 px accounts for title bar. 
     screen = np.array(ImageGrab.grab(bbox=(0,40, 800, 640)))
     new_screen = process_img(screen)
@@ -39,4 +60,4 @@ while(True):
 
 screen_record()
 
-#VID5
+#VID9 10.21
