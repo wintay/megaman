@@ -75,7 +75,7 @@ while(True):
     last_time = time.time()
 
     cv2.imshow('window', new_screen)
-    if len(training_data) % 500 == 0 :
+    if len(training_data) % 50 == 0 :
         np.save(file_name,training_data)
         print('saved')
     if cv2.waitKey(25) & 0xFF == ord('q'):
