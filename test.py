@@ -30,6 +30,9 @@ def keys_to_output(keys):
     elif 'K' in keys:
         output[6] = 1
         print('down')
+    elif 'P' in keys:
+        np.save(file_name,training_data)
+        print('saved')
     return output		
 file_name ='trainingdata.npy'
 if os.path.isfile(file_name):
@@ -72,9 +75,9 @@ while(True):
     last_time = time.time()
 
     cv2.imshow('window', new_screen)
-    if len(training_data) % 50 == 0 :
-        np.save(file_name,training_data)
-        print('saved')
+    # if len(training_data) % 50 == 0 :
+    #     np.save(file_name,training_data)
+    #     print('saved')
     if cv2.waitKey(25) & 0xFF == ord('q'):
         cv2.destroyAllWindows()
         break
