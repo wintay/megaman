@@ -18,16 +18,16 @@ def keys_to_output(keys):
     elif 'C' in keys:
         output[2] = 1
         print('c')
-    elif 'left' in keys:
+    elif 'J' in keys:
         output[3] = 1
         print('left')
-    elif 'up' in keys:
+    elif 'I' in keys:
         output[4] = 1
         print('up')
-    elif 'right' in keys:
+    elif 'L' in keys:
         output[5] = 1
         print('right')
-    elif 'down' in keys:
+    elif 'K' in keys:
         output[6] = 1
         print('down')
     return output		
@@ -39,10 +39,7 @@ else:
     print('creating file')
     training_data = []
 
-
-
 def process_img(original_image):
-    
     # convert to gray
     processed_img = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
     # edge detection

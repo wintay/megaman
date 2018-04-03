@@ -10,11 +10,11 @@ D = 0x20
 Z = 0x2C
 X = 0x2D
 C = 0x43
-left = 0xCB
-up = 0xC8
-right = 0xCD
-down = 0xD0
-
+left = 0x24
+up = 0x17
+right = 0x26
+down = 0x25
+# Using J, I, L, and K instead of arrow keys
 
 # C struct redefinitions 
 PUL = ctypes.POINTER(ctypes.c_ulong)
