@@ -5,6 +5,7 @@ import time
 from directkeys import ReleaseKey, PressKey, W, A, S, D, X, Z, C, left, up, right, down
 from getkeys import key_check
 import os
+import pyautogui
 
 def keys_to_output(keys):
 	#[Z,X,C,left,up,right,down]
@@ -33,7 +34,7 @@ def keys_to_output(keys):
     elif 'P' in keys:
         np.save(file_name,training_data)
         print('saved')
-    return output		
+    return output
 file_name ='trainingdata.npy'
 if os.path.isfile(file_name):
     print ('loading')
@@ -52,10 +53,83 @@ def process_img(original_image):
     training_data.append([processed_img,output])
     return processed_img
 
+# Controls
+def left():
+    pyautogui.keyDown('j')
+    pyautogui.keyUp('l')
+    pyautogui.keyUp('i')
+    pyautogui.keyUp('k')
+    pyautogui.keyUp('z')
+    pyautogui.keyUp('x')
+
+def right():
+    pyautogui.keyUp('j')
+    pyautogui.keyDown('l')
+    pyautogui.keyUp('i')
+    pyautogui.keyUp('k')
+    pyautogui.keyUp('z')
+    pyautogui.keyUp('x')
+
+def jump():
+    pyautogui.keyUp('j')
+    pyautogui.keyUp('l')
+    pyautogui.keyUp('i')
+    pyautogui.keyUp('k')
+    pyautogui.keyDown('z')
+    pyautogui.keyUp('x')
+
+def shoot():
+    pyautogui.keyUp('j')
+    pyautogui.keyUp('l')
+    pyautogui.keyUp('i')
+    pyautogui.keyUp('k')
+    pyautogui.keyUp('z')
+    pyautogui.press('x')
+
+def ladder_up():
+    pyautogui.keyUp('j')
+    pyautogui.keyUp('l')
+    pyautogui.keyDown('i')
+    pyautogui.keyUp('k')
+    pyautogui.keyUp('z')
+    pyautogui.keyUp('x')
+
+def ladder_down():
+    pyautogui.keyUp('j')
+    pyautogui.keyUp('l')
+    pyautogui.keyUp('i')
+    pyautogui.keyDown('k')
+    pyautogui.keyUp('z')
+    pyautogui.keyUp('x')
+
+def jump_right():
+    pyautogui.keyUp('j')
+    pyautogui.keyDown('l')
+    pyautogui.keyUp('i')
+    pyautogui.keyUp('k')
+    pyautogui.keyDown('z')
+    pyautogui.keyUp('x')
+
+def jump_left():
+    pyautogui.keyDown('j')
+    pyautogui.keyUp('l')
+    pyautogui.keyUp('i')
+    pyautogui.keyUp('k')
+    pyautogui.keyDown('z')
+    pyautogui.keyUp('x')
+
+def stop():
+    pyautogui.keyUp('j')
+    pyautogui.keyUp('l')
+    pyautogui.keyUp('i')
+    pyautogui.keyUp('k')
+    pyautogui.keyUp('z')
+    pyautogui.keyUp('x')
+
+# Countdown
 for i in list(range(4))[::-1]:
     print(i+1)
     time.sleep(1)
-
 
 last_time = time.time()
 while(True):
@@ -63,7 +137,6 @@ while(True):
     # 40 px accounts for title bar. 
     screen = np.array(ImageGrab.grab(bbox=(0,40, 800, 640)))
     new_screen = process_img(screen)#display processed img
-
 
     #print('jump')
     #PressKey(Z)
