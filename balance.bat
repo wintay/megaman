@@ -1,0 +1,2 @@
+python balance.py
+pause
