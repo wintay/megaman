@@ -2,7 +2,7 @@ import numpy as np
 from PIL import ImageGrab
 import cv2
 import time
-from directkeys import ReleaseKey, PressKey, W, A, S, D, X, Z, C, left, up, right, down
+# from directkeys import ReleaseKey, PressKey, W, A, S, D, X, Z, C, left, up, right, down
 from getkeys import key_check
 import os
 import pyautogui
@@ -12,28 +12,29 @@ def keys_to_output(keys):
     output = [0,0,0,0,0,0,0]
     if 'Z' in keys:
         output[0] = 1
-        print('z')
-    elif 'X' in keys:
+        # print('z')
+    if 'X' in keys:
         output[1] = 1
-        print('x')
-    elif 'C' in keys:
+        # print('x')
+    if 'C' in keys:
         output[2] = 1
-        print('c')
-    elif 'J' in keys:
+        # print('c')
+    if 'J' in keys:
         output[3] = 1
-        print('left')
-    elif 'I' in keys:
+        # print('left')
+    if 'I' in keys:
         output[4] = 1
-        print('up')
-    elif 'L' in keys:
+        # print('up')
+    if 'L' in keys:
         output[5] = 1
-        print('right')
-    elif 'K' in keys:
+        # print('right')
+    if 'K' in keys:
         output[6] = 1
-        print('down')
-    elif 'P' in keys:
+        # print('down')
+    if 'P' in keys:
         np.save(file_name,training_data)
         print('saved')
+    print(output)
     return output
 file_name ='trainingdata.npy'
 if os.path.isfile(file_name):
