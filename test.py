@@ -2,7 +2,6 @@ import numpy as np
 from PIL import ImageGrab
 import cv2
 import time
-# from directkeys import ReleaseKey, PressKey, W, A, S, D, X, Z, C, left, up, right, down
 from getkeys import key_check
 import os
 import pyautogui
