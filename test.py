@@ -135,7 +135,7 @@ last_time = time.time()
 while(True):
     # 800x600
     # 40 px accounts for title bar. 
-    screen = np.array(ImageGrab.grab(bbox=(0,40, 800, 640)))
+    screen = np.array(ImageGrab.grab(bbox=(20,40, 780, 700)))
     new_screen = process_img(screen)#display processed img
 
     #print('jump')
