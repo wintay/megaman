@@ -8,28 +8,28 @@ import pyautogui
 
 def keys_to_output(keys):
 	#[Z,X,C,left,up,right,down]
-    output = [0,0,0,0,0,0,0]
+    output = [0,0,0,0]
     if 'Z' in keys:
         output[0] = 1
         # print('z')
     if 'X' in keys:
         output[1] = 1
         # print('x')
-    if 'C' in keys:
-        output[2] = 1
-        # print('c')
+    # if 'C' in keys:
+    #     output[2] = 1
+    #     # print('c')
     if 'J' in keys:
-        output[3] = 1
+        output[2] = 1
         # print('left')
-    if 'I' in keys:
-        output[4] = 1
-        # print('up')
+    # if 'I' in keys:
+    #     output[4] = 1
+    #     # print('up')
     if 'L' in keys:
-        output[5] = 1
+        output[3] = 1
         # print('right')
-    if 'K' in keys:
-        output[6] = 1
-        # print('down')
+    # if 'K' in keys:
+    #     output[6] = 1
+    #     # print('down')
     if 'P' in keys:
         np.save(file_name,training_data)
         print('saved')
@@ -47,84 +47,11 @@ def process_img(original_image):
     # convert to gray
     processed_img = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
     # edge detection
-    processed_img =  cv2.Canny(processed_img, threshold1 = 200, threshold2=300)
+    # processed_img =  cv2.Canny(processed_img, threshold1 = 200, threshold2=300)
     keys = key_check()
     output = keys_to_output(keys)
     training_data.append([processed_img,output])
     return processed_img
-
-# Controls
-def left():
-    pyautogui.keyDown('j')
-    pyautogui.keyUp('l')
-    pyautogui.keyUp('i')
-    pyautogui.keyUp('k')
-    pyautogui.keyUp('z')
-    pyautogui.keyUp('x')
-
-def right():
-    pyautogui.keyUp('j')
-    pyautogui.keyDown('l')
-    pyautogui.keyUp('i')
-    pyautogui.keyUp('k')
-    pyautogui.keyUp('z')
-    pyautogui.keyUp('x')
-
-def jump():
-    pyautogui.keyUp('j')
-    pyautogui.keyUp('l')
-    pyautogui.keyUp('i')
-    pyautogui.keyUp('k')
-    pyautogui.keyDown('z')
-    pyautogui.keyUp('x')
-
-def shoot():
-    pyautogui.keyUp('j')
-    pyautogui.keyUp('l')
-    pyautogui.keyUp('i')
-    pyautogui.keyUp('k')
-    pyautogui.keyUp('z')
-    pyautogui.press('x')
-
-def ladder_up():
-    pyautogui.keyUp('j')
-    pyautogui.keyUp('l')
-    pyautogui.keyDown('i')
-    pyautogui.keyUp('k')
-    pyautogui.keyUp('z')
-    pyautogui.keyUp('x')
-
-def ladder_down():
-    pyautogui.keyUp('j')
-    pyautogui.keyUp('l')
-    pyautogui.keyUp('i')
-    pyautogui.keyDown('k')
-    pyautogui.keyUp('z')
-    pyautogui.keyUp('x')
-
-def jump_right():
-    pyautogui.keyUp('j')
-    pyautogui.keyDown('l')
-    pyautogui.keyUp('i')
-    pyautogui.keyUp('k')
-    pyautogui.keyDown('z')
-    pyautogui.keyUp('x')
-
-def jump_left():
-    pyautogui.keyDown('j')
-    pyautogui.keyUp('l')
-    pyautogui.keyUp('i')
-    pyautogui.keyUp('k')
-    pyautogui.keyDown('z')
-    pyautogui.keyUp('x')
-
-def stop():
-    pyautogui.keyUp('j')
-    pyautogui.keyUp('l')
-    pyautogui.keyUp('i')
-    pyautogui.keyUp('k')
-    pyautogui.keyUp('z')
-    pyautogui.keyUp('x')
 
 # Countdown
 for i in list(range(4))[::-1]:
@@ -135,7 +62,9 @@ last_time = time.time()
 while(True):
     # 800x600
     # 40 px accounts for title bar. 
-    screen = np.array(ImageGrab.grab(bbox=(20,40, 780, 700)))
+    screen = np.array(ImageGrab.grab(bbox=(0,40, 390, 350)))
+    # screen = cv2.resize(screen, (390,350))
+    screen = cv2.resize(screen, (195,175))
     new_screen = process_img(screen)#display processed img
 
     #print('jump')

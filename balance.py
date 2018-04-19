@@ -14,12 +14,13 @@ for data in train_data:
     img = data[0]
     choice = data[1]
 
-    if choice != [0,0,0,0,0,0,0]:
+    if choice != [0,0,0,0]:
     	newdata.append([img,choice])
-    else:
-    	print('no matches')
+    # else:
+    # 	print('no matches')
 
 np.save('balanced_data.npy', newdata)
+print('saved!')
 
 #for data in train_data:
 #    img = data[0]
