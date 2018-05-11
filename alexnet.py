@@ -1,13 +1,3 @@
-# alexnet.py
-
-""" AlexNet.
-References:
-    - Alex Krizhevsky, Ilya Sutskever & Geoffrey E. Hinton. ImageNet
-    Classification with Deep Convolutional Neural Networks. NIPS, 2012.
-Links:
-    - [AlexNet Paper](http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf)
-"""
-
 import tflearn
 from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.core import input_data, dropout, fully_connected

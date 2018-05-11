@@ -16,4 +16,4 @@ for data in train_data:
     print(choice)
     if cv2.waitKey(25) & 0xFF == ord('q'):
         cv2.destroyAllWindows()
-        break
+        breakx

@@ -44,12 +44,3 @@ for i in range(1,hm_data+1):
         print('create file {}'.format(i))
 
 print('done!')
-
-#for data in train_data:
-#    img = data[0]
-#    choice = data[1]
-#    cv2.imshow('test',img)
-#    print(choice)
-#    if cv2.waitKey(25) & 0xFF == ord('q'):
-#        cv2.destroyAllWindows()
-#        break

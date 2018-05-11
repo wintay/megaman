@@ -2,11 +2,9 @@ import numpy as np
 from PIL import ImageGrab
 import cv2
 import time
-# import pyautogui
 from directkeys import PressKey,ReleaseKey, Z, X, J, K, L, I
 from getkeys import key_check
 from alexnet import alexnet
-# import tensorflow as tf
 
 WIDTH = 195
 HEIGHT = 175
@@ -34,28 +32,8 @@ def jump():
     ReleaseKey(L)
 
 def shoot():
-    # ReleaseKey(Z)
-    # PressKey(X)
-    # ReleaseKey(J)
-    # ReleaseKey(L)
     PressKey(X)
     ReleaseKey(X)
-
-# def ladder_up():
-#     pyautogui.keyUp('j')
-#     pyautogui.keyUp('l')
-#     pyautogui.keyDown('i')
-#     pyautogui.keyUp('k')
-#     pyautogui.keyUp('z')
-#     pyautogui.keyUp('x')
-
-# def ladder_down():
-#     pyautogui.keyUp('j')
-#     pyautogui.keyUp('l')
-#     pyautogui.keyUp('i')
-#     pyautogui.keyDown('k')
-#     pyautogui.keyUp('z')
-#     pyautogui.keyUp('x')
 
 def jump_right():
     PressKey(Z)
@@ -75,24 +53,6 @@ def stop_moving():
     ReleaseKey(J)
     ReleaseKey(L)
 
-# def shoot_right():
-#     pyautogui.keyUp('j')
-#     pyautogui.keyDown('l')
-#     pyautogui.keyUp('z')
-#     pyautogui.keyDown('x')
-
-# def shoot_left():
-#     pyautogui.keyDown('j')
-#     pyautogui.keyUp('l')
-#     pyautogui.keyUp('z')
-#     pyautogui.keyDown('x')
-
-# def shoot_jump():
-#     pyautogui.keyUp('j')
-#     pyautogui.keyUp('l')
-#     pyautogui.keyDown('z')
-#     pyautogui.keyDown('x')
-
 def main():
     model = alexnet(WIDTH, HEIGHT, LR)
     model.load(MODEL_NAME)
@@ -108,36 +68,23 @@ def main():
     shoot_th = 0.1
     jump_th = 0.5
     stop_ct = 0 # prevent infinite freeze
-    # max_stop_ct = 25
-    max_stop_ct = 500
+    max_stop_ct = 25
+    # max_stop_ct = 500
 
     while(True):
-        # 800x600 windowed mode
         screen = np.array(ImageGrab.grab(bbox=(0,40, 390, 350)))
         print('loop took {} seconds'.format(time.time()-last_time))
         last_time = time.time()
         screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
-        # screen =  cv2.Canny(screen, threshold1 = 200, threshold2=300)
-        # screen = cv2.resize(screen, (390,350))
         screen = cv2.resize(screen, (195,175))
-        # cv2.imshow('window',screen)
-        # moves = list(np.around(model.predict([screen])[0]))
         prediction = model.predict([screen.reshape(195,175,1)])[0]
         print(prediction)
-        # moves = list(np.around(model.predict([screen.reshape(195,175,1)])[0]))
-        # print(moves)
 
         # [jump, shoot, left, right, jump_left, jump_right]
         if prediction[1] > shoot_th:
             shoot()
             print('shoot')
 
-        # if prediction[4] > jump_th:
-        #     jump_left()
-        #     print('jump left')
-        # elif prediction[5] > jump_th:
-        #     jump_right()
-        #     print('jump right')
         if (prediction[2] + prediction[4]) > walk_th:
             if prediction[4] > prediction[2]:
                 jump_left()
