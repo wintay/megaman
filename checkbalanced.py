@@ -4,9 +4,10 @@ import pandas as pd
 from collections import Counter
 from random import shuffle
 
-train_data = np.load('balanced_data.npy')
+data_set = ''     # Willy Fortress 2 stage
+# data_set = '_mtl'   # Metalman stage
 
-
+train_data = np.load('data\\data_balanced{}_3.npy'.format(data_set))
 
 for data in train_data:
     img = data[0]

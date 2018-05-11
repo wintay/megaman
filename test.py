@@ -6,36 +6,37 @@ from getkeys import key_check
 import os
 import pyautogui
 
+# data_set = ''     # Willy Fortress 2 stage
+data_set = '_mtl'   # Metalman stage
+
 def keys_to_output(keys):
-	#[Z,X,C,left,up,right,down]
-    output = [0,0,0,0]
+	#[Z,X,left,right,Z+left,Z+right]
+    output = [0,0,0,0,0,0]
     if 'Z' in keys:
-        output[0] = 1
-        # print('z')
-    if 'X' in keys:
+        if 'J' in keys:
+            output[4] = 1
+        elif 'L' in keys:
+            output[5] = 1
+        else:
+            output[0] = 1
+    elif 'X' in keys:
         output[1] = 1
-        # print('x')
     # if 'C' in keys:
     #     output[2] = 1
-    #     # print('c')
-    if 'J' in keys:
+    elif 'J' in keys:
         output[2] = 1
-        # print('left')
     # if 'I' in keys:
     #     output[4] = 1
-    #     # print('up')
-    if 'L' in keys:
+    elif 'L' in keys:
         output[3] = 1
-        # print('right')
     # if 'K' in keys:
     #     output[6] = 1
-    #     # print('down')
     if 'P' in keys:
         np.save(file_name,training_data)
         print('saved')
     print(output)
     return output
-file_name ='trainingdata.npy'
+file_name ='raw_data\\trainingdata{}_.npy'.format(data_set)
 if os.path.isfile(file_name):
     print ('loading')
     training_data = list(np.load(file_name))
